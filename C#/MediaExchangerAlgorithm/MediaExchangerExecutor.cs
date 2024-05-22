@@ -8,22 +8,18 @@ public class MediaExchangerExecutor
     }
 
     // tolerance refers to how far off the target can one nozzle be
-    public Task ExecuteTask( int lengthBetweenNozzle, double tolerance = 0 )
+    public Task ExecuteTask( int lengthBetweenNozzle, double plateTiltAngle = 0.0, double tolerance = 0 )
     {
         var aspOffsetY = _plateUsed.AspiratorOffsetY;
         var dspOffsetY = _plateUsed.DispenserOffsetY;
         var colPitch = _plateUsed.ColPitch;
         var colCount = _plateUsed.ColCount;
         var rowCount = _plateUsed.RowCount;
-        var tiltAngle = _plateUsed.TiltAngle;
-
-        // Offset relative to aspirate nozzle
-        double offsetYDifference = aspOffsetY - dspOffsetY;
 
         // Tilt angle correction
-        aspOffsetY *= Math.Cos( Math.PI * tiltAngle / 180 );
-        dspOffsetY *= Math.Cos( Math.PI * tiltAngle / 180 );
-        colPitch *= Math.Cos( Math.PI * tiltAngle / 180 );
+        aspOffsetY *= Math.Cos( Math.PI * plateTiltAngle / 180 );
+        dspOffsetY *= Math.Cos( Math.PI * plateTiltAngle / 180 );
+        colPitch *= Math.Cos( Math.PI * plateTiltAngle / 180 );
 
         // Count how many times to early-aspirate and late-dispense
         int nPrePost = ( int ) Math.Ceiling( lengthBetweenNozzle / colPitch );
@@ -35,12 +31,14 @@ public class MediaExchangerExecutor
         bool simulProc = false;
         if ( dspOffsetDifference > 0 )
         {
-            simulProc = dspOffsetDifference <= tolerance && dspOffsetDifference >= 0;
+            simulProc = dspOffsetDifference <= tolerance
+                        && dspOffsetDifference >= 0;
         }
         else
         {
-            simulProc = dspNozzleLocation >= 0 && dspNozzleLocation <= dspOffsetY
-                        && dspOffsetDifference >= -tolerance && dspOffsetDifference <= 0;
+            simulProc = dspNozzleLocation >= 0
+                        && dspOffsetDifference >= -tolerance
+                        && dspOffsetDifference <= 0;
         }
 
         // How many times the aspirate-dispense need to be repeated
