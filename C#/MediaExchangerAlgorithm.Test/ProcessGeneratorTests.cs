@@ -10,7 +10,7 @@ public class ProcessGeneratorTest
     private List<List<MachineAction>> simProcExpected;
     private List<List<MachineAction>> nonSimProcExpected;
 
-    [SetUp]
+    [OneTimeSetUp]
     public void Setup()
     {
         simProcExpected = new();
@@ -26,7 +26,6 @@ public class ProcessGeneratorTest
             nonSimProcExpected.Add( disp.ToList() );
             nonSimProcExpected.Add( asp.ToList() );
         }
-
     }
 
     [Test]

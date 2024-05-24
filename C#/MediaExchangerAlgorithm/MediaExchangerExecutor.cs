@@ -8,7 +8,7 @@ public class MediaExchangerExecutor
     }
 
     // tolerance refers to how far off the target can one nozzle be
-    public Task ExecuteTask( int lengthBetweenNozzle, double plateTiltAngle = 0.0, double tolerance = 0 )
+    public Task ExecuteTask( int lengthBetweenNozzle, double tolerance = 0.0, double plateTiltAngle = 0.0 )
     {
         var aspOffsetY = _plateUsed.AspiratorOffsetY;
         var dspOffsetY = _plateUsed.DispenserOffsetY;

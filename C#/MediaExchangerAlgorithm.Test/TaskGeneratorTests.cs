@@ -10,7 +10,7 @@ public class TaskGeneratorTest
     private List<MachineAction> aspirateActions;
     private List<MachineAction> dispenseActions;
 
-    [SetUp]
+    [OneTimeSetUp]
     public void Setup()
     {
         coordinates = new();
@@ -25,7 +25,6 @@ public class TaskGeneratorTest
             aspirateActions.Add( new MachineAction( Action.Aspirate, tempCoordinate ) );
             dispenseActions.Add( new MachineAction( Action.Dispense, tempCoordinate ) );
         }
-
     }
 
     [Test]
@@ -35,7 +34,7 @@ public class TaskGeneratorTest
         var generatedActions = TaskGenerator.GetAspirateActions( colNum, rowCount );
 
         // Assert
-        Assert.That( generatedActions, Is.EqualTo( aspirateActions ) );
+        Assert.That( generatedActions.SequenceEqual( aspirateActions ), Is.True );
     }
 
     [Test]
@@ -45,7 +44,7 @@ public class TaskGeneratorTest
         var generatedActions = TaskGenerator.GetDispenseActions( colNum, rowCount );
 
         // Assert
-        Assert.That( generatedActions, Is.EqualTo( dispenseActions ) );
+        Assert.That( generatedActions.SequenceEqual( dispenseActions ), Is.True );
     }
 
     [Test]
@@ -55,6 +54,6 @@ public class TaskGeneratorTest
         var generatedCoordinates = TaskGenerator.GetRowCoordinates( colNum, rowCount );
 
         // Assert
-        Assert.That( generatedCoordinates, Is.EqualTo( coordinates ) );
+        Assert.That( generatedCoordinates.SequenceEqual( coordinates ), Is.True );
     }
 }
