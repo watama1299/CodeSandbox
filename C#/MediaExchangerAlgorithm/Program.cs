@@ -3,5 +3,4 @@ Task.Delay( 2000 ).Wait();
 
 Plate plate = new Plate384();
 var mediaExchangeExecutor = new MediaExchangerExecutor( plate );
-mediaExchangeExecutor.ExecuteTask( (int) Dispenser.Primary )
-                        .Wait();
+await mediaExchangeExecutor.ExecuteTask( (int) Dispenser.Secondary, 0.5 );

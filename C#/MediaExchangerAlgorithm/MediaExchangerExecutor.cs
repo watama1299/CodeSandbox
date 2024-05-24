@@ -44,14 +44,13 @@ public class MediaExchangerExecutor
         // How many times the aspirate-dispense need to be repeated
         int nTimes = colCount - nPrePost;
 
-        return Task.Run( () =>
+        return Task.Run( async () =>
         {
             // Pre-aspirate
             // Aspirate early wells when plate is positioned only underneath aspirate nozzle
             for ( int i = colCount; i > nTimes; i-- )
             {
-                var asp = RunMachineAction( TaskGenerator.GetAspirateActions( i, rowCount ) );
-                asp.Wait();
+                await RunMachineAction( TaskGenerator.GetAspirateActions( i, rowCount ) );
                 Console.WriteLine();
             }
 
@@ -60,8 +59,7 @@ public class MediaExchangerExecutor
             {
                 foreach( var actions in ProcessGenerator.SimultaneousProcess( nTimes, nPrePost, rowCount ) )
                 {
-                    var simProc = RunMachineAction( actions );
-                    simProc.Wait();
+                    await RunMachineAction( actions );
                     Console.WriteLine();
                 }
             }
@@ -69,8 +67,7 @@ public class MediaExchangerExecutor
             {
                 foreach( var actions in ProcessGenerator.NonSimultaneousProcess( nTimes, nPrePost, rowCount ) )
                 {
-                    var nonSimProc = RunMachineAction( actions );
-                    nonSimProc.Wait();
+                    await RunMachineAction( actions );
                     Console.WriteLine();
                 }
             }
@@ -79,8 +76,7 @@ public class MediaExchangerExecutor
             // Dispense into remaining wells after plate is only underneath dispense nozzle
             for ( int i = colCount - nTimes; i > 0; i-- )
             {
-                var dsp = RunMachineAction( TaskGenerator.GetDispenseActions( i, rowCount ) );
-                dsp.Wait();
+                await RunMachineAction( TaskGenerator.GetDispenseActions( i, rowCount ) );
                 Console.WriteLine();
             }
         });
@@ -101,9 +97,9 @@ public class MediaExchangerExecutor
             List<Task> tasks = new();
             foreach ( var action in machineActions )
             {
-                tasks.Add( Task.Run( () =>
+                tasks.Add( Task.Run( async () =>
                 {
-                    Task.Delay( new Random().Next( 0, 500 ) ).Wait();
+                    await Task.Delay( new Random().Next( 0, 500 ) );
                     VerboseAction( action );
                 } ) );
             }
