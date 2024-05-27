@@ -13,7 +13,6 @@ public class MediaExchangeExecutor
             plateUsed.DispenserOffsetY,
             plateUsed.ColPitch,
             plateUsed.ColCount,
-            plateUsed.RowCount,
             tolerance,
             plateTiltAngle
 
@@ -25,13 +24,9 @@ public class MediaExchangeExecutor
         }
     }
 
-    private static void VerboseAction( MachineAction machineAction )
+    private static void VerboseAction( MachineAction ma )
     {
-        var processingType = machineAction.ProcessingType;
-        var actionType = machineAction.ActionType;
-        var coordinate = machineAction.Coordinate;
-
-        Console.WriteLine( $"{ processingType } { actionType } DONE --> Column: [{ coordinate.Column }]" );
+        Console.WriteLine( $"{ ma.ProcessingType } { ma.ActionType } DONE --> Column: [{ ma.ColumnNumber }]" );
     }
 
     private static async Task RunMachineAction( MachineAction action )

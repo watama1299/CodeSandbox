@@ -6,7 +6,6 @@ public static class MediaExchangeGenerator
         double dispenserOffsetY,
         double columnPitch,
         int columnCount,
-        int rowCount,
         double tolerance = 0.0,
         double plateTiltAngle = 0.0
     )
@@ -26,7 +25,7 @@ public static class MediaExchangeGenerator
         double dspNozzleLocation = Math.Round( aspiratorOffsetY + nPrePost*columnPitch - lengthBetweenNozzle, 4 );
         double dspOffsetDifference = Math.Round( dspNozzleLocation - dispenserOffsetY, 4 );
 
-        bool simulProc = false;
+        bool simulProc;
         if ( dspOffsetDifference > 0 )
         {
             simulProc = dspOffsetDifference <= tolerance
@@ -44,7 +43,7 @@ public static class MediaExchangeGenerator
         // Aspirate early wells when plate is positioned only underneath aspirate nozzle
         for ( int i = columnCount; i > nTimes; i-- )
         {
-            yield return new MachineAction( ProcessingType.NonParallel, ActionType.Aspirate, new Coordinate( i, rowCount ) );
+            yield return new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, i );
         }
 
         // Once plate is underneath both nozzles, choose whether simulataneous process or not
@@ -52,16 +51,16 @@ public static class MediaExchangeGenerator
         {
             for ( int i = nTimes; i > 0; i-- )
             {
-                yield return new MachineAction( ProcessingType.Parallel, ActionType.Dispense, new Coordinate( i + nPrePost, rowCount ) );
-                yield return new MachineAction( ProcessingType.Parallel, ActionType.Aspirate, new Coordinate( i, rowCount ) );
+                yield return new MachineAction( ProcessingType.Simultaneous, ActionType.Dispense, i + nPrePost );
+                yield return new MachineAction( ProcessingType.Simultaneous, ActionType.Aspirate, i );
             }
         }
         else
         {
             for ( int i = nTimes; i > 0; i-- )
             {
-                yield return new MachineAction( ProcessingType.NonParallel, ActionType.Dispense, new Coordinate( i + nPrePost, rowCount ) );
-                yield return new MachineAction( ProcessingType.NonParallel, ActionType.Aspirate, new Coordinate( i, rowCount ) );
+                yield return new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, i + nPrePost );
+                yield return new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, i );
             }
         }
 
@@ -69,7 +68,7 @@ public static class MediaExchangeGenerator
         // Dispense into remaining wells after plate is only underneath dispense nozzle
         for ( int i = columnCount - nTimes; i > 0; i-- )
         {
-            yield return new MachineAction( ProcessingType.NonParallel, ActionType.Dispense, new Coordinate( i, rowCount ) );
+            yield return new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, i );
         }
     }
 }
