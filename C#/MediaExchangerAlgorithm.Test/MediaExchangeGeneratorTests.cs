@@ -4,7 +4,6 @@ namespace MediaExchangerAlgorithm.Test;
 public class MediaExchangeGeneratorTest
 {
     List<MachineAction> simultaneousExchangeExpected;
-    List<MachineAction> nonSimultaneousExchangeExpected;
 
     [OneTimeSetUp]
     public void Setup()
@@ -18,19 +17,6 @@ public class MediaExchangeGeneratorTest
 
             new MachineAction( ProcessingType.Simultaneous, ActionType.Dispense, 2 ),
             new MachineAction( ProcessingType.Simultaneous, ActionType.Aspirate, 1 ),
-
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
-        };
-
-        nonSimultaneousExchangeExpected = new List<MachineAction>()
-        {
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 3 ),
-
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 3 ),
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 2 ),
-
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 2 ),
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 1 ),
 
             new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
         };
@@ -56,6 +42,19 @@ public class MediaExchangeGeneratorTest
     public void GenerateRoutine_Simple_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
+        var expectedActions = new List<MachineAction>()
+        {
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 3 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 3 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 2 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 2 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 1 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
+        };
+
         var actualActions = MediaExchangeGenerator.GenerateRoutine(
             4.4,
             0,
@@ -65,11 +64,28 @@ public class MediaExchangeGeneratorTest
         );
         
         // Assert
-        Assert.That( actualActions, Is.EqualTo( nonSimultaneousExchangeExpected ) );
+        Assert.That( actualActions, Is.EqualTo( expectedActions ) );
     }
 
     [Test]
-    public void GenerateRoutine_AspiratorOffset_Simultaneous_ReturnCorrectActions()
+    public void GenerateRoutine_Complex_Simultaneous_ReturnCorrectActions()
+    {
+        // Arrange
+        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+            4.5,
+            0,
+            0,
+            4.4,
+            3,
+            0.5
+        );
+
+        // Assert
+        Assert.That( actualActions, Is.EqualTo( simultaneousExchangeExpected ) );
+    }
+
+    [Test]
+    public void GenerateRoutine_AspiratorOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
         var actualActions = MediaExchangeGenerator.GenerateRoutine(
@@ -86,7 +102,35 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_DispenserOffset_Simultaneous_ReturnCorrectActions()
+    public void GenerateRoutine_AspiratorOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
+    {
+        // Arrange
+        var expectedActions = new List<MachineAction>()
+        {
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 3 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 2 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 3 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 1 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 2 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
+        };
+
+        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+            4.5,
+            0.3,
+            0,
+            4.5,
+            3
+        );
+
+        // Assert
+        Assert.That( actualActions, Is.EqualTo( expectedActions ) );
+    }
+
+    [Test]
+    public void GenerateRoutine_DispenserOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
         var actualActions = MediaExchangeGenerator.GenerateRoutine(
@@ -103,9 +147,22 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_OffsetWithoutTolerance_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateRoutine_DispenserOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
+        var expectedActions = new List<MachineAction>()
+        {
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 3 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 3 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 2 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 2 ),
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 1 ),
+
+            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
+        };
+
         var actualActions = MediaExchangeGenerator.GenerateRoutine(
             4.5,
             0,
@@ -115,11 +172,29 @@ public class MediaExchangeGeneratorTest
         );
 
         // Assert
-        Assert.That( actualActions, Is.EqualTo( nonSimultaneousExchangeExpected ) );
+        Assert.That( actualActions, Is.EqualTo( expectedActions ) );
     }
 
     [Test]
-    public void GenerateRoutine_WithTiltAngle_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateRoutine_WithTiltAngle_WithTolerance_Simultaneous_ReturnCorrectActions()
+    {
+        // Arrange
+        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+            4.5,
+            0,
+            0,
+            4.5,
+            3,
+            0.5,
+            10
+        );
+
+        // Assert
+        Assert.That( actualActions, Is.EqualTo( simultaneousExchangeExpected ) );
+    }
+
+    [Test]
+    public void GenerateRoutine_WithTiltAngle_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
         var expectedActions = new List<MachineAction>()
@@ -142,35 +217,6 @@ public class MediaExchangeGeneratorTest
             3,
             0,
             10
-        );
-
-        // Assert
-        Assert.That( actualActions, Is.EqualTo( expectedActions ) );
-    }
-
-    [Test]
-    public void GenerateRoutine_Complex_Simultaneous_ReturnCorrectActions()
-    {
-        // Arrange
-        var expectedActions = new List<MachineAction>()
-        {
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 3 ),
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 2 ),
-
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 3 ),
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, 1 ),
-
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 2 ),
-            new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
-        };
-
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
-            4.5,
-            0,
-            0,
-            4.4,
-            3,
-            0.5
         );
 
         // Assert
