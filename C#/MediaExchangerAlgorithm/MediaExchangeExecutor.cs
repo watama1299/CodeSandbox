@@ -15,7 +15,6 @@ public class MediaExchangeExecutor
             plateUsed.ColCount,
             tolerance,
             plateTiltAngle
-
         );
 
         foreach( var machineAction in machineActions )

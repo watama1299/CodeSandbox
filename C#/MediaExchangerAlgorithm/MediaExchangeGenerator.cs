@@ -19,16 +19,15 @@ public static class MediaExchangeGenerator
         int nPrePost;
 
         // Calculate how much is actual nozzle offset
-        // Calculation done if aspirator at target location
-        // Dispenser nozzle location when aspirator nozzle is set on a target
+        // Calculation considers when aspirator at target location
         int nPreAspOrigin = ( int ) Math.Ceiling( lengthBetweenNozzle / columnPitch );
-        double dspNozzleLocation = Math.Round( aspiratorOffsetY + nPreAspOrigin*columnPitch - lengthBetweenNozzle, 4 );
+        double dspNozzleLocation = Math.Round( aspiratorOffsetY + nPreAspOrigin * columnPitch - lengthBetweenNozzle, 4 );
         double dspOffsetDifference = Math.Round( dspNozzleLocation - dispenserOffsetY, 4 );
 
-        // Calculation done if dispenser at target location
+        // Calculation considers when dispenser at target location
         int nPreDspOrigin = ( int ) Math.Floor( lengthBetweenNozzle / columnPitch );
         double aspNozzleLocation = Math.Round( dispenserOffsetY + lengthBetweenNozzle, 4 );
-        double aspOffsetDifference = Math.Round( aspNozzleLocation - ( aspiratorOffsetY + nPreDspOrigin*columnPitch ), 4 );
+        double aspOffsetDifference = Math.Round( aspNozzleLocation - ( aspiratorOffsetY + nPreDspOrigin * columnPitch ), 4 );
 
 
 
