@@ -1,10 +1,11 @@
 public static class TaskGenerator
 {
+    /**
     public static IEnumerable<MachineAction> GetAspirateActions( int colNum, int rowCount )
     {
         foreach ( var coordinate in GetRowCoordinates( colNum, rowCount ))
         {
-            yield return new MachineAction( Action.Aspirate, coordinate );
+            yield return new MachineAction( ActionType.Aspirate, coordinate );
         }
     }
 
@@ -12,7 +13,7 @@ public static class TaskGenerator
     {
         foreach ( var coordinate in GetRowCoordinates( colNum, rowCount ))
         {
-            yield return new MachineAction( Action.Dispense, coordinate );
+            yield return new MachineAction( ActionType.Dispense, coordinate );
         }
     }
 
@@ -23,4 +24,5 @@ public static class TaskGenerator
             yield return new Coordinate( colNum, i );
         }
     }
+    */
 }

@@ -22,8 +22,8 @@ public class TaskGeneratorTest
             var tempCoordinate = new Coordinate( colNum, i );
 
             coordinates.Add( tempCoordinate );
-            aspirateActions.Add( new MachineAction( Action.Aspirate, tempCoordinate ) );
-            dispenseActions.Add( new MachineAction( Action.Dispense, tempCoordinate ) );
+            aspirateActions.Add( new MachineAction( ActionType.Aspirate, tempCoordinate ) );
+            dispenseActions.Add( new MachineAction( ActionType.Dispense, tempCoordinate ) );
         }
     }
 

@@ -1,28 +1,37 @@
 public struct MachineAction
 {
-    public Action Action { get; }
+    public ProcessingType ProcessingType { get; }
+    public ActionType ActionType { get; }
     public Coordinate Coordinate { get; }
 
-    public MachineAction(Action action, Coordinate coordinate)
+    public MachineAction( ProcessingType processingType, ActionType actionType, Coordinate coordinate )
     {
-        Action = action;
+        ProcessingType = processingType;
+        ActionType = actionType;
         Coordinate = coordinate;
     }
 
     // override object.Equals
     public override bool Equals(object? obj) => obj is MachineAction other && this.Equals(other);
 
-    public readonly bool Equals(MachineAction ma) => Action.Equals( ma.Action ) && Coordinate.Equals( ma.Coordinate );
+    public readonly bool Equals(MachineAction ma) => ActionType.Equals( ma.ActionType ) && Coordinate.Equals( ma.Coordinate );
     
     // override object.GetHashCode
     public override int GetHashCode()
     {
-        return HashCode.Combine( Action, Coordinate );
+        return HashCode.Combine( ActionType, Coordinate );
     }
 }
 
-public enum Action
+// Action exists
+public enum ActionType
 {
     Aspirate,
-    Dispense
+    Dispense,
+}
+
+public enum ProcessingType
+{
+    NonParallel,
+    Parallel
 }

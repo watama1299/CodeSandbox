@@ -32,7 +32,7 @@ public class ProcessGeneratorTest
     public void GetAspirateActions_ReturnCorrectActions()
     {
         // Arrange
-        var generatedActions = ProcessGenerator.SimultaneousProcess( nTimes, nPrePost, rowCount );
+        var generatedActions = MediaExchangeGenerator.SimultaneousProcess( nTimes, nPrePost, rowCount );
 
         // Assert
         Assert.That( generatedActions, Is.EqualTo( simProcExpected ) );
@@ -42,7 +42,7 @@ public class ProcessGeneratorTest
     public void GetDispenseActions_ReturnCorrectActions()
     {
         // Arrange
-        var generatedActions = ProcessGenerator.NonSimultaneousProcess( nTimes, nPrePost, rowCount );
+        var generatedActions = MediaExchangeGenerator.NonSimultaneousProcess( nTimes, nPrePost, rowCount );
 
         // Assert
         Assert.That( generatedActions, Is.EqualTo( nonSimProcExpected ) );
