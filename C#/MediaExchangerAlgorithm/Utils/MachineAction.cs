@@ -12,9 +12,9 @@ public struct MachineAction
     }
 
     // override object.Equals
-    public override bool Equals( object? obj ) => obj is MachineAction other && this.Equals(other);
+    public override bool Equals( object? obj ) => obj is MachineAction other && this.Equals( other );
 
-    public readonly bool Equals( MachineAction ma ) => 
+    public bool Equals( MachineAction ma ) => 
         ProcessingType.Equals ( ma.ProcessingType )
         && ActionType.Equals( ma.ActionType )
         && ColumnNumber.Equals( ma.ColumnNumber );

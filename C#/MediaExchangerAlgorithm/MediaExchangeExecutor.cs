@@ -1,4 +1,4 @@
-public class MediaExchangeExecutor
+public static class MediaExchangeExecutor
 {
     public static async Task ExecuteRoutine(
         Plate plateUsed,

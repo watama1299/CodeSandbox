@@ -31,7 +31,7 @@ public static class MediaExchangeGenerator
 
 
 
-        bool simulProc;
+        bool simultaneousProcess;
         bool aspirateFirst;
         if ( dspOffsetDifference < aspOffsetDifference )
         {
@@ -39,12 +39,12 @@ public static class MediaExchangeGenerator
             nPrePost = nPreAspOrigin;
             if ( dspOffsetDifference > 0 )
             {
-                simulProc = dspOffsetDifference <= tolerance
+                simultaneousProcess = dspOffsetDifference <= tolerance
                             && dspOffsetDifference >= 0;
             }
             else
             {
-                simulProc = dspNozzleLocation >= 0
+                simultaneousProcess = dspNozzleLocation >= 0
                             && dspOffsetDifference >= -tolerance
                             && dspOffsetDifference <= 0;
             }
@@ -55,12 +55,12 @@ public static class MediaExchangeGenerator
             nPrePost = nPreDspOrigin;
             if ( aspOffsetDifference > 0 )
             {
-                simulProc = aspOffsetDifference <= tolerance
+                simultaneousProcess = aspOffsetDifference <= tolerance
                             && aspOffsetDifference >= 0;
             }
             else
             {
-                simulProc = aspNozzleLocation >= 0
+                simultaneousProcess = aspNozzleLocation >= 0
                             && aspOffsetDifference >= -tolerance
                             && aspOffsetDifference <= 0;
             }
@@ -77,8 +77,8 @@ public static class MediaExchangeGenerator
             yield return new MachineAction( ProcessingType.NonSimultaneous, ActionType.Aspirate, i );
         }
 
-        // Once plate is underneath both nozzles, choose whether simulataneous process or not
-        if ( simulProc )
+        // Once plate is underneath both nozzles, choose whether simultaneous process or not
+        if ( simultaneousProcess )
         {
             for ( int i = nTimes; i > 0; i-- )
             {
