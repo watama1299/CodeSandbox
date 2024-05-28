@@ -23,10 +23,10 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_Simple_Simultaneous_ReturnCorrectActions()
+    public void GenerateTasks_Simple_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0,
@@ -39,7 +39,7 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_Simple_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateTasks_Simple_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
         var expectedActions = new List<MachineAction>()
@@ -55,7 +55,7 @@ public class MediaExchangeGeneratorTest
             new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
         };
 
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.4,
             0,
             0,
@@ -68,10 +68,10 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_Complex_Simultaneous_ReturnCorrectActions()
+    public void GenerateTasks_Complex_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0,
@@ -85,10 +85,10 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_AspiratorOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
+    public void GenerateTasks_AspiratorOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0.3,
             0,
@@ -102,7 +102,7 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_AspiratorOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateTasks_AspiratorOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
         var expectedActions = new List<MachineAction>()
@@ -117,7 +117,7 @@ public class MediaExchangeGeneratorTest
             new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
         };
 
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0.3,
             0,
@@ -130,10 +130,10 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_DispenserOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
+    public void GenerateTasks_DispenserOffset_WithTolerance_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0.3,
@@ -147,7 +147,7 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_DispenserOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateTasks_DispenserOffset_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
         var expectedActions = new List<MachineAction>()
@@ -163,7 +163,7 @@ public class MediaExchangeGeneratorTest
             new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
         };
 
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0.3,
@@ -176,10 +176,10 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_WithTiltAngle_WithTolerance_Simultaneous_ReturnCorrectActions()
+    public void GenerateTasks_WithTiltAngle_WithTolerance_Simultaneous_ReturnCorrectActions()
     {
         // Arrange
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0,
@@ -194,7 +194,7 @@ public class MediaExchangeGeneratorTest
     }
 
     [Test]
-    public void GenerateRoutine_WithTiltAngle_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
+    public void GenerateTasks_WithTiltAngle_WithoutTolerance_NonSimultaneous_ReturnCorrectActions()
     {
         // Arrange
         var expectedActions = new List<MachineAction>()
@@ -209,7 +209,7 @@ public class MediaExchangeGeneratorTest
             new MachineAction( ProcessingType.NonSimultaneous, ActionType.Dispense, 1 ),
         };
 
-        var actualActions = MediaExchangeGenerator.GenerateRoutine(
+        var actualActions = MediaExchangeGenerator.Generate(
             4.5,
             0,
             0,

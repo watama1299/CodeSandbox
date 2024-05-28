@@ -1,13 +1,13 @@
 public static class MediaExchangeExecutor
 {
-    public static async Task ExecuteRoutine(
+    public static async Task Execute(
         Plate plateUsed,
         Dispenser chosenDispenser,
         double tolerance = 0.0,
         double plateTiltAngle = 0.0
     )
     {
-        var machineActions = MediaExchangeGenerator.GenerateRoutine(
+        var machineActions = MediaExchangeGenerator.Generate(
             ( int ) chosenDispenser,
             plateUsed.AspiratorOffsetY,
             plateUsed.DispenserOffsetY,

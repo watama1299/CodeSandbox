@@ -1,6 +1,6 @@
 public static class MediaExchangeGenerator
 {
-    public static IEnumerable<MachineAction> GenerateRoutine(
+    public static IEnumerable<MachineAction> Generate(
         double lengthBetweenNozzle,
         double aspiratorOffsetY,
         double dispenserOffsetY,
