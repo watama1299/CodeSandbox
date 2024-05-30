@@ -5,12 +5,11 @@ public class ProductDetails
     public double Weight { get; set; }
     public CountryInitials ShippedFrom { get; set; }
     
-    private decimal _shippingRate;
     public decimal ShippingRate
     {
-        get { return _shippingRate; }
-        set
+        get
         {
+            int _shippingRate;
             switch (ShippedFrom)
             {
                 case CountryInitials.US:
@@ -22,7 +21,19 @@ public class ProductDetails
                 case CountryInitials.CN:
                     _shippingRate = 2;
                     break;
+                default:
+                    _shippingRate = 0;
+                    break;
             }
+            return _shippingRate;
         }
+    }
+
+    public ProductDetails( ItemType type, decimal price, double weight, CountryInitials shippingCountry ) 
+    {
+        this.Type = type;
+        ItemPrice = price;
+        this.Weight = weight;
+        ShippedFrom = shippingCountry;
     }
 }
