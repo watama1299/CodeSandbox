@@ -39,14 +39,12 @@ public static class MediaExchangeGenerator
             nPrePost = nPreAspOrigin;
             if ( dspOffsetDifference > 0 )
             {
-                simultaneousProcess = dspOffsetDifference <= tolerance
-                            && dspOffsetDifference >= 0;
+                simultaneousProcess = dspOffsetDifference <= tolerance;
             }
             else
             {
                 simultaneousProcess = dspNozzleLocation >= 0
-                            && dspOffsetDifference >= -tolerance
-                            && dspOffsetDifference <= 0;
+                            && dspOffsetDifference >= -tolerance;
             }
         }
         else
@@ -55,14 +53,12 @@ public static class MediaExchangeGenerator
             nPrePost = nPreDspOrigin;
             if ( aspOffsetDifference > 0 )
             {
-                simultaneousProcess = aspOffsetDifference <= tolerance
-                            && aspOffsetDifference >= 0;
+                simultaneousProcess = aspOffsetDifference <= tolerance;
             }
             else
             {
                 simultaneousProcess = aspNozzleLocation >= 0
-                            && aspOffsetDifference >= -tolerance
-                            && aspOffsetDifference <= 0;
+                            && aspOffsetDifference >= -tolerance;
             }
         }
 
