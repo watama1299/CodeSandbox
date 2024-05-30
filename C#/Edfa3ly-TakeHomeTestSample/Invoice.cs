@@ -1,10 +1,26 @@
 public class Invoice
 {
     private decimal _subtotal;
+    public decimal Subtotal { get { return _subtotal; } }
+
     private decimal _shippingCost;
+    public decimal ShippingCost { get { return _shippingCost; } }
+
     private decimal _taxAmount;
+    public decimal TaxAmount { get { return _taxAmount; } }
+
     private decimal _total;
-    private IDictionary<IDiscount, decimal> _discounts;
+    public decimal Total { get { return _total; } }
+
+    private IDictionary<IDiscount, decimal> _discountsApplied;
+    public IDictionary<IDiscount, decimal> DiscountsApplied
+    {
+        get
+        {
+            if ( _discountsApplied == null ) return new Dictionary<IDiscount, decimal>();
+            return _discountsApplied;
+        }
+    }
 
     private Invoice( 
         decimal subtotal,
@@ -18,7 +34,7 @@ public class Invoice
         _shippingCost = shippingCost;
         _taxAmount = taxAmount;
         _total = total;
-        _discounts = discounts;
+        _discountsApplied = discounts;
     }
 
     public static Invoice GenerateInvoice( Cart userCart )
@@ -45,10 +61,10 @@ public class Invoice
         toPrint += $"Subtotal: ${_subtotal}\n";
         toPrint += $"Shipping: ${_shippingCost}\n";
         toPrint += $"VAT: ${_taxAmount}\n";
-        if ( _discounts.Count > 0 )
+        if ( _discountsApplied.Count > 0 )
         {
             toPrint += "Discounts:\n";
-            foreach( var discount in _discounts )
+            foreach( var discount in _discountsApplied )
             {
                 toPrint += $"      {discount.Key.Description}: -${discount.Value}\n";
             }

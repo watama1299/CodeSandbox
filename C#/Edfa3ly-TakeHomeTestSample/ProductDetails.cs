@@ -31,13 +31,13 @@ public class ProductDetails
 
     private ProductDetails( ItemType type, decimal price, double weight, CountryInitials shippingCountry ) 
     {
-        this.Type = type;
+        Type = type;
         ItemPrice = price;
-        this.Weight = weight;
+        Weight = weight;
         ShippedFrom = shippingCountry;
     }
 
-    public static ProductDetails ProductFactory( ItemType type )
+    public static ProductDetails ChooseProduct( ItemType type )
     {
         return type switch
         {

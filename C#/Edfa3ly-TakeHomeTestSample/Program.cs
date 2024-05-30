@@ -1,9 +1,9 @@
-﻿var tshirt = ProductDetails.ProductFactory( ItemType.Tshirt );
-var blouse = ProductDetails.ProductFactory( ItemType.Blouse );
-var pants = ProductDetails.ProductFactory( ItemType.Pants );
-var sweatpants = ProductDetails.ProductFactory( ItemType.Sweatpants );
-var jacket = ProductDetails.ProductFactory( ItemType.Jacket );
-var shoes = ProductDetails.ProductFactory( ItemType.Shoes );
+﻿var tshirt = ProductDetails.ChooseProduct( ItemType.Tshirt );
+var blouse = ProductDetails.ChooseProduct( ItemType.Blouse );
+var pants = ProductDetails.ChooseProduct( ItemType.Pants );
+var sweatpants = ProductDetails.ChooseProduct( ItemType.Sweatpants );
+var jacket = ProductDetails.ChooseProduct( ItemType.Jacket );
+var shoes = ProductDetails.ChooseProduct( ItemType.Shoes );
 
 
 var userCart = new Cart();

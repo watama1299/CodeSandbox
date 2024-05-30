@@ -22,4 +22,8 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Edfa3ly-TakeHomeTestSample\Edfa3ly-TakeHomeTestSample.csproj" />
+  </ItemGroup>
+
 </Project>
