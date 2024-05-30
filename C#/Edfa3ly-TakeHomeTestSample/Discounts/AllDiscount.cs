@@ -9,9 +9,9 @@ public static class AllDiscounts
         {
             return new Collection<IDiscount>()
             {
+                new DiscountShoes(),
                 new DiscountJacket(),
-                new DiscountShipping(),
-                new DiscountShoes()
+                new DiscountShipping()
             };
         }
     }

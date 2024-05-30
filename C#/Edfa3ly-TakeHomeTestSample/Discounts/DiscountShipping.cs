@@ -1,6 +1,6 @@
 public class DiscountShipping : IDiscount
 {
-    public string Description { get { return "$10 of shipping"; } }
+    public string Description { get { return "$10 off shipping"; } }
 
     public bool CheckValidity( IDictionary<ProductDetails, int> products )
     {
