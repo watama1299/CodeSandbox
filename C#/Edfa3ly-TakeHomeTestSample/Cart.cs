@@ -8,6 +8,7 @@ public class Cart
 
     public bool AddProduct( ProductDetails product )
     {
+        if ( product == null ) return false;
         if ( ProductsInCart.ContainsKey( product ) ) ProductsInCart[product] += 1;
         else ProductsInCart.Add( product, 1 );
         return true;
@@ -27,8 +28,8 @@ public class Cart
     {
         if ( !ProductsInCart.ContainsKey(product) ) return false;
         
-        if ( ProductsInCart[product] == 0 ) return false;
-        else ProductsInCart[product] -= 1;
+        ProductsInCart[product] -= 1;
+        if ( ProductsInCart[product] == 0 ) ProductsInCart.Remove( product );
         return true;
     }
 

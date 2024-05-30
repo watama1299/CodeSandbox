@@ -1,13 +1,8 @@
 namespace Edfa3ly_TakeHomeTestSample;
 
 [TestFixture]
-public class ProductDetailsTest
+public class ProductDetailsTests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void ChooseProduct_ReturnTshirt()
     {
