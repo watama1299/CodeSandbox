@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaExchangerAlgorithm", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaExchangerAlgorithm.Test", "MediaExchangerAlgorithm.Test\MediaExchangerAlgorithm.Test.csproj", "{4AAF7820-C37D-4EE3-A413-CD36CEB83650}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edfa3ly-TakeHomeTestSample", "Edfa3ly-TakeHomeTestSample\Edfa3ly-TakeHomeTestSample.csproj", "{7CB8DFDA-D2B2-4985-8459-08F7390C8258}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +46,17 @@ Global
 		{4AAF7820-C37D-4EE3-A413-CD36CEB83650}.Release|x64.Build.0 = Release|Any CPU
 		{4AAF7820-C37D-4EE3-A413-CD36CEB83650}.Release|x86.ActiveCfg = Release|Any CPU
 		{4AAF7820-C37D-4EE3-A413-CD36CEB83650}.Release|x86.Build.0 = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|x64.Build.0 = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|x64.ActiveCfg = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|x64.Build.0 = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CB8DFDA-D2B2-4985-8459-08F7390C8258}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
