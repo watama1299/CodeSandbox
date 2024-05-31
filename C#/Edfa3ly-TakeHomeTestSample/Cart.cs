@@ -38,7 +38,7 @@ public class Cart
         if ( products == null ) return false;
         foreach ( var product in products )
         {
-                RemoveProduct( product );
+            RemoveProduct( product );
         }
         return true;
     }
