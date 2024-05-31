@@ -156,27 +156,20 @@ public class CartTests
         });
     }
 
-    // [Test]
-    // public void RemoveProducts_ReturnFalse()
-    // {
-    //     // Arrange
-    //     var tshirt = ProductDetails.ChooseProduct( ItemType.Tshirt );
-    //     var jacket = ProductDetails.ChooseProduct( ItemType.Jacket );
-    //     var itemsToAdd = new Collection<ProductDetails> { jacket, tshirt, jacket };
-    //     var itemsToRemove = new Collection<ProductDetails> { jacket, tshirt };
-    //     var actualCart = new Cart();
+    [Test]
+    public void RemoveProducts_ReturnFalse()
+    {
+        // Arrange
+        var actualCart = new Cart();
 
-    //     // Act
-    //     actualCart.AddProducts( itemsToAdd );
-    //     var success = actualCart.RemoveProducts( itemsToRemove );
+        // Act
+        var success = actualCart.RemoveProducts( null );
 
-    //     // Assert
-    //     Assert.Multiple( () =>
-    //     {
-    //         Assert.That( actualCart.ProductsInCart.Count, Is.EqualTo( 1 ) );
-    //         Assert.That( success, Is.True );
-    //         Assert.That( actualCart.ProductsInCart.ContainsKey( tshirt ), Is.False );
-    //         Assert.That( actualCart.ProductsInCart.ContainsKey( jacket ), Is.True );
-    //     });
-    // }
+        // Assert
+        Assert.Multiple( () =>
+        {
+            Assert.That( actualCart.ProductsInCart.Count, Is.EqualTo( 0 ) );
+            Assert.That( success, Is.False );
+        });
+    }
 }
