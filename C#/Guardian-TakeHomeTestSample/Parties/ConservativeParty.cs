@@ -17,7 +17,7 @@ public class ConservativeParty : Party
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _conservativeParty == null ) _conservativeParty = new ConservativeParty();
         return _conservativeParty;

@@ -11,13 +11,13 @@ public class GreenParty : Party
     private static GreenParty _greenParty;
     private GreenParty()
     {
-        Code = PartyCodes.C;
-        Name = "Conservative Party";
+        Code = PartyCodes.G;
+        Name = "Green Party";
         _totalVoteCount = 0;
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _greenParty == null ) _greenParty = new GreenParty();
         return _greenParty;

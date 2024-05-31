@@ -11,13 +11,13 @@ public class LiberalDemocrats : Party
     private static LiberalDemocrats _liberalDemocrats;
     private LiberalDemocrats()
     {
-        Code = PartyCodes.C;
-        Name = "Conservative Party";
+        Code = PartyCodes.LD;
+        Name = "Liberal Democrats";
         _totalVoteCount = 0;
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _liberalDemocrats == null ) _liberalDemocrats = new LiberalDemocrats();
         return _liberalDemocrats;

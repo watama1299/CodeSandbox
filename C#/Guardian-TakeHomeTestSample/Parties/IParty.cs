@@ -6,7 +6,7 @@ public interface IParty
     public ICollection<Constituency> ConstituenciesWon { get; }
 
 
+    // public IParty GetInstance();
     public bool UpdateVoteCount( int voteCount );
     public bool AddConstituencyWon( Constituency constituency );
-    public IParty GetInstance();
 }

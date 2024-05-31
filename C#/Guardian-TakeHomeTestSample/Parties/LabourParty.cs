@@ -11,13 +11,13 @@ public class LabourParty : Party
     private static LabourParty _labourParty;
     private LabourParty()
     {
-        Code = PartyCodes.C;
+        Code = PartyCodes.L;
         Name = "Labour Party";
         _totalVoteCount = 0;
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _labourParty == null ) _labourParty = new LabourParty();
         return _labourParty;

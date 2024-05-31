@@ -11,13 +11,13 @@ public class SNP : Party
     private static SNP _snp;
     private SNP()
     {
-        Code = PartyCodes.C;
-        Name = "Conservative Party";
+        Code = PartyCodes.SNP;
+        Name = "SNP";
         _totalVoteCount = 0;
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _snp == null ) _snp = new SNP();
         return _snp;

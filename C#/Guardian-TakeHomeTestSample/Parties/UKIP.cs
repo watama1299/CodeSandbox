@@ -11,13 +11,13 @@ public class UKIP : Party
     private static UKIP _ukip;
     private UKIP()
     {
-        Code = PartyCodes.C;
-        Name = "Conservative Party";
+        Code = PartyCodes.UKIP;
+        Name = "UKIP";
         _totalVoteCount = 0;
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _ukip == null ) _ukip = new UKIP();
         return _ukip;

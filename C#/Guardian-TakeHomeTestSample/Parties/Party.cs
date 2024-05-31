@@ -8,7 +8,7 @@ public abstract class Party : IParty
     public virtual ICollection<Constituency> ConstituenciesWon { get; }
 
 
-    public abstract IParty GetInstance();
+    // public abstract IParty GetInstance();
     public abstract bool AddConstituencyWon(Constituency constituency);
     public abstract bool UpdateVoteCount(int voteCount);
 

@@ -17,7 +17,7 @@ public class Independent : Party
         ConstituenciesWon = new List<Constituency>();
     }
 
-    public override IParty GetInstance()
+    public static IParty GetInstance()
     {
         if ( _independent == null ) _independent = new Independent();
         return _independent;
