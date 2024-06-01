@@ -6,7 +6,7 @@ string[] input = {
 
 dataHandler.Handle(input);
 
-Console.WriteLine( dataHandler.ConstituencyWinner( "Cardiff West" ) );
+Console.WriteLine( dataHandler.ConstituencyWinner( "Islington South & Finsbury" ) );
 Console.WriteLine( dataHandler.PartyVotePercentage( ConservativeParty.GetInstance() ) );
 
 Console.ReadKey();
